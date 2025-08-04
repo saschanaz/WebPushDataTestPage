@@ -11,7 +11,7 @@ function showBgNotification(body) {
     });
 }
 
-let timeout = 200;
+let timeout = 700;
 
 self.addEventListener('push', async function(event)  {
     /* Push events arrive when a push message is received.
