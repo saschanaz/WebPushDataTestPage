@@ -103,7 +103,21 @@
     to presume that it's a string, but the data can be
     <a href="https://w3c.github.io/push-api/#pushmessagedata-interface">any format</a>.
     Just be sure that the service worker 'push' event handler knows how to read it.</div>
-    <textarea name="data">This is test data.
+    <textarea name="data">
+{
+    "web_push": 8030,
+    "notification": {
+        "title": "Webkit.org — Meet Declarative Web Push",
+        "lang": "en-US",
+        "dir": "ltr",
+        "body": "Send push notifications without JavaScript or service worker!",
+        "navigate": "https://webkit.org/blog/16535/meet-declarative-web-push/",
+        "silent": false,
+        // WebKit bug https://bugs.webkit.org/show_bug.cgi?id=296770
+        "mutable": true
+    },
+    "mutable": true
+}
 </textarea>
     <div class="data_ok hidden">All good! The service worker managed to get
         and understand the data.</div>
