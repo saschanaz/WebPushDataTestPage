@@ -20,7 +20,16 @@ self.addEventListener('push', async function(event)  {
     */
     console.info("**** Recv'd a push message::", JSON.stringify(event));
 
+    console.info("push event is fired");
+
     await new Promise(r => setTimeout(r, timeout))
+
+    console.info("push event proceeds");
+
+    if (event.notification) {
+        registration.showNotification(event.notification.title, event.notification);
+        return;
+    }
 
     if (event.data) {
         // Data is a accessor. Data may be in one of several formats.
