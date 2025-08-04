@@ -11,12 +11,16 @@ function showBgNotification(body) {
     });
 }
 
-self.addEventListener('push', function(event)  {
+let timeout = 200;
+
+self.addEventListener('push', async function(event)  {
     /* Push events arrive when a push message is received.
        They should include a .data component that is the decrypted
        content of the message.
     */
     console.info("**** Recv'd a push message::", JSON.stringify(event));
+
+    await new Promise(r => setTimeout(r, timeout))
 
     if (event.data) {
         // Data is a accessor. Data may be in one of several formats.
