@@ -46,7 +46,8 @@ self.addEventListener('push', async function(event)  {
         // Send the event to the parent pages.
         event.waitUntil(
           self.clients.matchAll()
-           .then(clientList => {
+           .then(async clientList => {
+              await new Promise(r => setTimeout(r, timeout));
               console.info("push event proceeds");
               let sent = false;
               console.debug("Service worker found clients",
