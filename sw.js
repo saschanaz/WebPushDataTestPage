@@ -22,12 +22,12 @@ self.addEventListener('push', async function(event)  {
 
     console.info("push event is fired");
 
-    await new Promise(r => setTimeout(r, timeout))
-
-    console.info("push event proceeds");
-
     if (event.notification) {
-        registration.showNotification(event.notification.title, event.notification);
+        event.waitUntil((async () => {
+            console.info("push event proceeds");
+            await new Promise(r => setTimeout(r, timeout));
+            await registration.showNotification(event.notification.title, event.notification);
+        })());
         return;
     }
 
@@ -47,6 +47,7 @@ self.addEventListener('push', async function(event)  {
         event.waitUntil(
           self.clients.matchAll()
            .then(clientList => {
+              console.info("push event proceeds");
               let sent = false;
               console.debug("Service worker found clients",
                     JSON.stringify(clients));
